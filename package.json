@@ -19,6 +19,13 @@
     "react-helmet": "^5.2.1"
   },
   "devDependencies": {
+    "babel-eslint": "^10.0.1",
+    "eslint": "^5.16.0",
+    "eslint-config-prettier": "^3.1.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-jsx-a11y": "^6.1.2",
+    "eslint-plugin-prettier": "^3.0.0",
+    "eslint-plugin-react": "^7.11.1",
     "prettier": "^1.17.1"
   },
   "keywords": [
@@ -31,7 +38,10 @@
     "format": "prettier --write src/**/*.{js,jsx}",
     "start": "npm run develop",
     "serve": "gatsby serve",
-    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\""
+    "test": "echo \"Write tests! -> https://gatsby.dev/unit-testing\"",
+    "format-output": "prettier src/**/*.{js,jsx}",
+    "lint-errors": "eslint src/**/*.{js,jsx} --quiet",
+    "lint": "eslint src/**/*.{js,jsx}"
   },
   "repository": {
     "type": "git",
