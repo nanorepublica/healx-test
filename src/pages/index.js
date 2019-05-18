@@ -11,10 +11,10 @@ class IndexPage extends React.Component {
     super();
     this.updateSearchTerm = this.updateSearchTerm.bind(this);
     this.baseSearchUrl = new URL(
-      'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi'
+      'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi'
     );
     this.baseSummaryUrl = new URL(
-      'http://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi'
+      'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi'
     );
 
     this.state = {
