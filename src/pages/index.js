@@ -86,7 +86,7 @@ class IndexPage extends React.Component {
     return (
       <Layout>
         <SEO title="Home" keywords={['healx', 'search', 'pubmed']} />
-
+        <h1>Search</h1>
         {/* Search Input */}
         <div style={{ margin: '100px auto' }}>
           <SearchBar updateSearchTerm={this.updateSearchTerm} />

@@ -6,7 +6,6 @@ Implement a simple search app for searching PubMed articles. The focus is on sim
 
 ## part 2
 
-- Add second page for reading list
 - Add plus/minus button to search result to add/remove to reading list (client state)
 - persist this over an API (function?)
 - second page to get data from function
