@@ -6,7 +6,6 @@ Implement a simple search app for searching PubMed articles. The focus is on sim
 
 ## todo
 
-- improve performance by improving where API calls are made and update data model in the DB
 - refactor index.js to have functions in more appropriate places.
 - deal with 429 response from pubmed. improve search box to do this initially
 - use netlify identity to enable multi user situations

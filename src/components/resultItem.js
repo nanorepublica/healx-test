@@ -6,40 +6,8 @@ import { faBookmark as faBookmarkOutline } from '@fortawesome/free-regular-svg-i
 import readingListApi from '../utils/readingListApi';
 
 export default class ResultItem extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      inReadingList: false,
-    };
-    this.addItem = this.addItem.bind(this);
-    this.removeItem = this.removeItem.bind(this);
-  }
-
-  componentDidMount() {
-    // Check with the server that the item is in our list and update local state
-    readingListApi.inList(this.props.item.uid).then(inList => {
-      this.setState({ inReadingList: inList });
-    });
-  }
-
-  addItem() {
-    readingListApi.addItem(this.props.item.uid).then(response => {
-      if (response.statusCode === 200) {
-        this.setState({ inReadingList: true });
-      }
-    });
-  }
-
-  removeItem() {
-    readingListApi.delete(this.props.item.uid).then(response => {
-      console.log(response);
-      if (response.statusCode === 200) {
-        this.setState({ inReadingList: false });
-      }
-    });
-  }
-
   render() {
+    const inReadingList = this.props.bookmarkList.includes(this.props.item.uid);
     return (
       <li
         style={{
@@ -77,9 +45,9 @@ export default class ResultItem extends Component {
             marginRight: 0,
           }}
         >
-          {this.state.inReadingList ? (
+          {inReadingList ? (
             <button
-              onClick={this.removeItem}
+              onClick={() => this.props.removeItem(this.props.item.uid)}
               style={{
                 background: 'none!important',
                 cursor: 'pointer',
@@ -93,7 +61,7 @@ export default class ResultItem extends Component {
             </button>
           ) : (
             <button
-              onClick={this.addItem}
+              onClick={() => this.props.addItem(this.props.item.uid)}
               style={{
                 background: 'none!important',
                 cursor: 'pointer',

@@ -4,25 +4,20 @@ import SEO from '../components/seo';
 import ResultList from '../components/results';
 
 import readingListApi from '../utils/readingListApi';
-import pubMedApi from '../utils/pubMedApi';
 
 export default class ReadingList extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      readingList: { uids: [] },
+      readingList: [],
     };
+    this.userId = window.localStorage.getItem('userID');
   }
 
   componentDidMount() {
-    var self = this;
     // get the list of UIDs from the backend to pass to the list to generate
-    readingListApi.readAll().then(data => {
-      const set = new Set(data.map(item => item.data.articleId));
-      const list = Array.from(set);
-      pubMedApi.getResultDetails(list, function(json) {
-        self.setState({ readingList: json.result });
-      });
+    readingListApi.read(this.userId).then(json => {
+      this.setState({ readingList: json.data.readingList });
     });
   }
 
@@ -32,7 +27,7 @@ export default class ReadingList extends Component {
         <SEO title="Reading List" keywords={['healx', 'reading', 'pubmed']} />
         <h1>Reading List</h1>
         <div style={{ margin: '100px auto' }}>
-          <ResultList results={this.state.readingList} />
+          <ResultList results={this.state.readingList} isSavedList={true} />
         </div>
       </Layout>
     );

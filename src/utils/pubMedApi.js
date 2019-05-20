@@ -38,7 +38,6 @@ const doSearch = () => {
 };
 
 const getResultDetails = (resultList, cb) => {
-  var self = this;
   var params = {
     db: 'pubmed',
     retmode: 'json',
@@ -50,9 +49,6 @@ const getResultDetails = (resultList, cb) => {
       return response.json();
     })
     .then(cb);
-  // .then(function(json) {
-  //   self.setState({ resultList: json.result });
-  // });
 };
 
 export default {

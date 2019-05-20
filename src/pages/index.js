@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 // import { Link } from "gatsby"
 
 import Layout from '../components/layout';
@@ -20,7 +20,7 @@ class IndexPage extends React.Component {
       term: '',
       url: this.baseSearchUrl,
       resultCount: 0,
-      resultList: { uids: [] },
+      resultList: [],
       offset: 0,
     };
   }
@@ -28,7 +28,7 @@ class IndexPage extends React.Component {
   updateSearchTerm(value) {
     this.setState(
       // We reset the result list and count in case term is empty
-      { term: value, resultList: { uids: [] }, resultCount: 0 },
+      { term: value, resultList: [], resultCount: 0 },
       this.updateURL
     );
   }
@@ -61,9 +61,7 @@ class IndexPage extends React.Component {
         return [];
       })
       .then(function(resultList) {
-        pubMedApi.getResultDetails(resultList, function(json) {
-          self.setState({ resultList: json.result });
-        });
+        self.setState({ resultList: resultList });
       });
   }
 
@@ -80,16 +78,17 @@ class IndexPage extends React.Component {
           <div style={{ margin: 'auto', width: '80%', paddingTop: '40px' }}>
             {this.state.term ? (
               <p>
-                Showing {this.state.resultList.uids.length} of{' '}
-                {this.state.count} results for {this.state.term}.
+                Showing {this.state.resultList.length} of {this.state.count}{' '}
+                results for {this.state.term}.
               </p>
             ) : (
               <p />
             )}
           </div>
-
           {/* Search Result List */}
-          <ResultList results={this.state.resultList} />
+          {this.state.resultList && (
+            <ResultList results={this.state.resultList} isSavedList={false} />
+          )}
         </div>
       </Layout>
     );
