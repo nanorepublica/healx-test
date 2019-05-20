@@ -31,7 +31,8 @@ export default class ResultItem extends Component {
   }
 
   removeItem() {
-    readingListApi.remove(this.props.item.uid).then(response => {
+    readingListApi.delete(this.props.item.uid).then(response => {
+      console.log(response);
       if (response.statusCode === 200) {
         this.setState({ inReadingList: false });
       }

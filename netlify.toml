@@ -5,4 +5,4 @@ ID = "wonderful-turing-1862a7"
 # unless otherwise overridden by more specific contexts.
 [build]
   # Directory with the serverless Lambda functions to deploy to AWS.
-  functions = "functions/"
+  functions = "./functions"

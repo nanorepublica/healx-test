@@ -53,9 +53,6 @@ const Header = ({ siteTitle }) => (
             Reading List
           </Link>
         </h3>
-        <h3 style={{ display: 'inline-block', margin: 0 }}>
-          <div data-netlify-identity-button />
-        </h3>
       </div>
     </div>
   </header>

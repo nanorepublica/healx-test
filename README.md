@@ -4,14 +4,13 @@ Implement a simple search app for searching PubMed articles. The focus is on sim
 
 ## [Demo](https://healx.akmiller.co.uk/)
 
-## part 2
+## todo
 
-- Add plus/minus button to search result to add/remove to reading list (client state)
-- persist this over an API (function?)
-- second page to get data from function
-- Add in identity?
+- improve performance by improving where API calls are made and update data model in the DB
+- refactor index.js to have functions in more appropriate places.
+- deal with 429 response from pubmed. improve search box to do this initially
+- use netlify identity to enable multi user situations
 
 ## nice to have:
 
-- pagination on search
-- Add search button? - will help with 429 issue
+- pagination on search results

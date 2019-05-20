@@ -6,15 +6,14 @@ import SEO from '../components/seo';
 import ResultList from '../components/results';
 import SearchBar from '../components/searchBar';
 
+import pubMedApi from '../utils/pubMedApi';
+
 class IndexPage extends React.Component {
   constructor() {
     super();
     this.updateSearchTerm = this.updateSearchTerm.bind(this);
     this.baseSearchUrl = new URL(
       'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esearch.fcgi'
-    );
-    this.baseSummaryUrl = new URL(
-      'https://eutils.ncbi.nlm.nih.gov/entrez/eutils/esummary.fcgi'
     );
 
     this.state = {
@@ -28,6 +27,7 @@ class IndexPage extends React.Component {
 
   updateSearchTerm(value) {
     this.setState(
+      // We reset the result list and count in case term is empty
       { term: value, resultList: { uids: [] }, resultCount: 0 },
       this.updateURL
     );
@@ -61,24 +61,9 @@ class IndexPage extends React.Component {
         return [];
       })
       .then(function(resultList) {
-        self.getResultDetails(resultList);
-      });
-  }
-
-  getResultDetails(resultList) {
-    var self = this;
-    var params = {
-      db: 'pubmed',
-      retmode: 'json',
-      id: resultList.join(','),
-    };
-    this.baseSummaryUrl.search = new URLSearchParams(params);
-    fetch(this.baseSummaryUrl)
-      .then(function(response) {
-        return response.json();
-      })
-      .then(function(json) {
-        self.setState({ resultList: json.result });
+        pubMedApi.getResultDetails(resultList, function(json) {
+          self.setState({ resultList: json.result });
+        });
       });
   }
 
