@@ -72,7 +72,10 @@ export default class ResultList extends Component {
       .updateList(this.state.userId, this.state.bookmarkList)
       .then(function(resp) {
         self.setState({ userId: resp.ref['@ref'].id }, () => {
-          if (!window.localStorage.hasOwnProperty('userID')) {
+          if (
+            typeof window !== 'undefined' &&
+            !window.localStorage.hasOwnProperty('userID')
+          ) {
             window.localStorage.setItem('userID', self.state.userId);
           }
         });

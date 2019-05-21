@@ -11,7 +11,6 @@ export default class ReadingList extends Component {
     this.state = {
       readingList: [],
     };
-    this.userId = window.localStorage.getItem('userID');
   }
 
   componentDidMount() {
@@ -19,6 +18,7 @@ export default class ReadingList extends Component {
     readingListApi.read(this.userId).then(json => {
       this.setState({ readingList: json.data.readingList });
     });
+    this.userId = window.localStorage.getItem('userID');
   }
 
   render() {
