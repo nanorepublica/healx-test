@@ -38,6 +38,7 @@
   ],
   "license": "MIT",
   "scripts": {
+    "prebuild": "node ./functions/reading-list/create-schema.js",
     "build": "gatsby build",
     "develop": "gatsby develop",
     "format": "prettier --write src/**/*.{js,jsx}",

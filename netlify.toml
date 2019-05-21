@@ -6,3 +6,4 @@ ID = "wonderful-turing-1862a7"
 [build]
   # Directory with the serverless Lambda functions to deploy to AWS.
   functions = "./functions"
+  command = "npm run build"
