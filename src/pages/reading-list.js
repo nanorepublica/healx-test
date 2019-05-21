@@ -15,10 +15,10 @@ export default class ReadingList extends Component {
 
   componentDidMount() {
     // get the list of UIDs from the backend to pass to the list to generate
+    this.userId = window.localStorage.getItem('userID');
     readingListApi.read(this.userId).then(json => {
       this.setState({ readingList: json.data.readingList });
     });
-    this.userId = window.localStorage.getItem('userID');
   }
 
   render() {
